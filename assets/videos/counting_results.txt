@@ -1,0 +1,196 @@
+================================================================================
+PEOPLE COUNTING RESULTS
+Date: 2025-12-12 19:47:41
+================================================================================
+
+Total videos processed: 20
+Total processing time: 50.84s
+
+Video Name                                   UP   DOWN    Time(s)      FPS
+--------------------------------------------------------------------------------
+1-morning-back-crowd.mp4                      3      9       2.05    231.5
+2-morning-back-uncrowd.mp4                    2      2       1.58    241.2
+3-morning-front-crowd.mp4                    10      2       4.77    242.8
+4-morning-front-uncrowd.mp4                   1      1       1.59    238.9
+5-afternoon-back-crowd.mp4                    3      3       2.19    244.7
+6-afternoon-back-uncrowd.mp4                  1      2       1.68    245.2
+7-afternoon-front-crowd.mp4                   6      1       3.54    244.4
+8-afternoon-front-uncrowd.mp4                 2      0       1.53    250.8
+9-morning-front-crowd.mp4                    14      2       4.20    233.9
+10-morning-back-up-and-down.mp4               5      5       2.04    232.2
+11-afternoon-back-up-and-down.mp4             0      3       1.86    237.3
+12-morning-back-up-and-down.mp4               2      3       1.88    236.3
+13-morning-front-super-crowd.mp4             11      4       4.92    236.3
+14-morning-front-the-driver_3.mp4             1      0       1.27    259.0
+15-morning-back-crowd-noisy.mp4               2     19       3.83    247.8
+16-afternoon-back-crowd.mp4                   2      5       2.18    256.7
+17-afternoon-back-uncrowd.mp4                 1     12       2.36    238.0
+18-afternoon-front-crowd-noisy.mp4            1      1       2.64    234.9
+19-random.mp4                                 0      5       2.38    225.2
+20-random.mp4                                 1     10       2.26    236.3
+--------------------------------------------------------------------------------
+TOTAL                                        68     89
+
+
+Detailed Results:
+================================================================================
+
+Video: 1-morning-back-crowd.mp4
+  - People going UP: 3
+  - People going DOWN: 9
+  - Total frames: 474
+  - Processing time: 2.05s
+  - Average FPS: 231.5
+  - Output file: ../assets/videos/results/result_counting_1-morning-back-crowd.mp4
+
+Video: 10-morning-back-up-and-down.mp4
+  - People going UP: 5
+  - People going DOWN: 5
+  - Total frames: 473
+  - Processing time: 2.04s
+  - Average FPS: 232.2
+  - Output file: ../assets/videos/results/result_counting_10-morning-back-up-and-down.mp4
+
+Video: 11-afternoon-back-up-and-down.mp4
+  - People going UP: 0
+  - People going DOWN: 3
+  - Total frames: 442
+  - Processing time: 1.86s
+  - Average FPS: 237.3
+  - Output file: ../assets/videos/results/result_counting_11-afternoon-back-up-and-down.mp4
+
+Video: 12-morning-back-up-and-down.mp4
+  - People going UP: 2
+  - People going DOWN: 3
+  - Total frames: 445
+  - Processing time: 1.88s
+  - Average FPS: 236.3
+  - Output file: ../assets/videos/results/result_counting_12-morning-back-up-and-down.mp4
+
+Video: 13-morning-front-super-crowd.mp4
+  - People going UP: 11
+  - People going DOWN: 4
+  - Total frames: 1162
+  - Processing time: 4.92s
+  - Average FPS: 236.3
+  - Output file: ../assets/videos/results/result_counting_13-morning-front-super-crowd.mp4
+
+Video: 14-morning-front-the-driver_3.mp4
+  - People going UP: 1
+  - People going DOWN: 0
+  - Total frames: 328
+  - Processing time: 1.27s
+  - Average FPS: 259.0
+  - Output file: ../assets/videos/results/result_counting_14-morning-front-the-driver_3.mp4
+
+Video: 15-morning-back-crowd-noisy.mp4
+  - People going UP: 2
+  - People going DOWN: 19
+  - Total frames: 948
+  - Processing time: 3.83s
+  - Average FPS: 247.8
+  - Output file: ../assets/videos/results/result_counting_15-morning-back-crowd-noisy.mp4
+
+Video: 16-afternoon-back-crowd.mp4
+  - People going UP: 2
+  - People going DOWN: 5
+  - Total frames: 559
+  - Processing time: 2.18s
+  - Average FPS: 256.7
+  - Output file: ../assets/videos/results/result_counting_16-afternoon-back-crowd.mp4
+
+Video: 17-afternoon-back-uncrowd.mp4
+  - People going UP: 1
+  - People going DOWN: 12
+  - Total frames: 562
+  - Processing time: 2.36s
+  - Average FPS: 238.0
+  - Output file: ../assets/videos/results/result_counting_17-afternoon-back-uncrowd.mp4
+
+Video: 18-afternoon-front-crowd-noisy.mp4
+  - People going UP: 1
+  - People going DOWN: 1
+  - Total frames: 621
+  - Processing time: 2.64s
+  - Average FPS: 234.9
+  - Output file: ../assets/videos/results/result_counting_18-afternoon-front-crowd-noisy.mp4
+
+Video: 19-random.mp4
+  - People going UP: 0
+  - People going DOWN: 5
+  - Total frames: 536
+  - Processing time: 2.38s
+  - Average FPS: 225.2
+  - Output file: ../assets/videos/results/result_counting_19-random.mp4
+
+Video: 2-morning-back-uncrowd.mp4
+  - People going UP: 2
+  - People going DOWN: 2
+  - Total frames: 382
+  - Processing time: 1.58s
+  - Average FPS: 241.2
+  - Output file: ../assets/videos/results/result_counting_2-morning-back-uncrowd.mp4
+
+Video: 20-random.mp4
+  - People going UP: 1
+  - People going DOWN: 10
+  - Total frames: 533
+  - Processing time: 2.26s
+  - Average FPS: 236.3
+  - Output file: ../assets/videos/results/result_counting_20-random.mp4
+
+Video: 3-morning-front-crowd.mp4
+  - People going UP: 10
+  - People going DOWN: 2
+  - Total frames: 1159
+  - Processing time: 4.77s
+  - Average FPS: 242.8
+  - Output file: ../assets/videos/results/result_counting_3-morning-front-crowd.mp4
+
+Video: 4-morning-front-uncrowd.mp4
+  - People going UP: 1
+  - People going DOWN: 1
+  - Total frames: 381
+  - Processing time: 1.59s
+  - Average FPS: 238.9
+  - Output file: ../assets/videos/results/result_counting_4-morning-front-uncrowd.mp4
+
+Video: 5-afternoon-back-crowd.mp4
+  - People going UP: 3
+  - People going DOWN: 3
+  - Total frames: 537
+  - Processing time: 2.19s
+  - Average FPS: 244.7
+  - Output file: ../assets/videos/results/result_counting_5-afternoon-back-crowd.mp4
+
+Video: 6-afternoon-back-uncrowd.mp4
+  - People going UP: 1
+  - People going DOWN: 2
+  - Total frames: 412
+  - Processing time: 1.68s
+  - Average FPS: 245.2
+  - Output file: ../assets/videos/results/result_counting_6-afternoon-back-uncrowd.mp4
+
+Video: 7-afternoon-front-crowd.mp4
+  - People going UP: 6
+  - People going DOWN: 1
+  - Total frames: 865
+  - Processing time: 3.54s
+  - Average FPS: 244.4
+  - Output file: ../assets/videos/results/result_counting_7-afternoon-front-crowd.mp4
+
+Video: 8-afternoon-front-uncrowd.mp4
+  - People going UP: 2
+  - People going DOWN: 0
+  - Total frames: 383
+  - Processing time: 1.53s
+  - Average FPS: 250.8
+  - Output file: ../assets/videos/results/result_counting_8-afternoon-front-uncrowd.mp4
+
+Video: 9-morning-front-crowd.mp4
+  - People going UP: 14
+  - People going DOWN: 2
+  - Total frames: 982
+  - Processing time: 4.20s
+  - Average FPS: 233.9
+  - Output file: ../assets/videos/results/result_counting_9-morning-front-crowd.mp4
