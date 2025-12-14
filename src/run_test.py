@@ -9,7 +9,7 @@ from tracker import CentroidTracker
 import psutil
 
 # --- CONFIGURATION ---
-MODEL_FILE = '../models/project-2-linux-x86_64-v5.eim'
+MODEL_FILE = '../models/project-2-linux-aarch64-v7.eim'
 VIDEO_DIR = '../testing_videos'
 OUTPUT_DIR = '../assets/videos/results'
 

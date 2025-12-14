@@ -3,7 +3,7 @@
 ```bash
 sudo apt-get update
 sudo apt-get install -y \
-    libatlas-base-dev \
+    libopenblas-dev \
     libportaudio2 \
     libopenjp2-7 \
     libtiff6 \
