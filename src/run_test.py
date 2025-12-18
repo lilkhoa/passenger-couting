@@ -67,6 +67,11 @@ def process_video(video_path, runner, model_params):
     initial_memory = process.memory_info().rss / (1024 * 1024)  # MB
     peak_memory = initial_memory
     
+    # CPU tracking initialization
+    # Call it once before loop to start the counter (blocking=False)
+    psutil.cpu_percent(interval=None)
+    cpu_readings = []
+
     frame_count = 0
     start_time = time.time()
     
@@ -155,7 +160,12 @@ def process_video(video_path, runner, model_params):
         if frame_count % 10 == 0:
             elapsed = time.time() - start_time
             fps_curr = frame_count / elapsed
-            sys.stdout.write(f"\rFrame {frame_count}/{total_frames} | FPS: {fps_curr:.1f} | UP: {total_up} DOWN: {total_down} | RAM: {current_memory:.1f}MB")
+            
+            # Measure CPU (non-blocking)
+            current_cpu = psutil.cpu_percent(interval=None)
+            cpu_readings.append(current_cpu)
+            
+            sys.stdout.write(f"\rFrame {frame_count}/{total_frames} | FPS: {fps_curr:.1f} | UP: {total_up} DOWN: {total_down} | RAM: {current_memory:.1f}MB | CPU: {current_cpu:.1f}%")
             sys.stdout.flush()
     
     cap.release()
@@ -166,9 +176,13 @@ def process_video(video_path, runner, model_params):
     final_memory = process.memory_info().rss / (1024 * 1024)  # MB
     memory_used = final_memory - initial_memory
     
+    # Calculate Average CPU
+    avg_cpu = sum(cpu_readings) / len(cpu_readings) if cpu_readings else 0.0
+    
     print(f"\n -> Processed {frame_count} frames in {elapsed_time:.2f}s (avg {avg_fps:.1f} FPS)")
     print(f" -> Final Count: UP={total_up}, DOWN={total_down}")
     print(f" -> Memory: Initial={initial_memory:.1f}MB, Peak={peak_memory:.1f}MB, Used={memory_used:.1f}MB")
+    print(f" -> Avg CPU Usage: {avg_cpu:.1f}%")
     print(f" -> Result saved to: {output_path}")
     
     return {
@@ -181,6 +195,7 @@ def process_video(video_path, runner, model_params):
         'initial_memory': initial_memory,
         'peak_memory': peak_memory,
         'memory_used': memory_used,
+        'avg_cpu': avg_cpu,
         'output': str(output_path)
     }
 
@@ -229,27 +244,27 @@ def main(argv):
         
         # 4. Print Summary
         overall_time = time.time() - overall_start
-        print(f"\n{'='*80}")
+        print(f"\n{'='*95}")
         print("FINAL SUMMARY")
-        print(f"{'='*80}")
+        print(f"{'='*95}")
         print(f"Total videos processed: {len(results)}")
         print(f"Total time: {overall_time:.2f}s\n")
         
-        print(f"{'Video Name':<40} {'UP':>6} {'DOWN':>6} {'Time(s)':>10} {'FPS':>8} {'PeakRAM':>10}")
-        print(f"{'-'*90}")
+        print(f"{'Video Name':<40} {'UP':>6} {'DOWN':>6} {'Time(s)':>10} {'FPS':>8} {'PeakRAM':>10} {'CPU%':>8}")
+        print(f"{'-'*105}")
         
         total_up_all = 0
         total_down_all = 0
         max_peak_memory = 0
         
         for r in results:
-            print(f"{r['video_name']:<40} {r['up']:>6} {r['down']:>6} {r['time']:>10.2f} {r['fps']:>8.1f} {r['peak_memory']:>9.1f}MB")
+            print(f"{r['video_name']:<40} {r['up']:>6} {r['down']:>6} {r['time']:>10.2f} {r['fps']:>8.1f} {r['peak_memory']:>9.1f}MB {r['avg_cpu']:>7.1f}%")
             total_up_all += r['up']
             total_down_all += r['down']
             if r['peak_memory'] > max_peak_memory:
                 max_peak_memory = r['peak_memory']
         
-        print(f"{'-'*90}")
+        print(f"{'-'*105}")
         print(f"{'TOTAL':<40} {total_up_all:>6} {total_down_all:>6}")
         print(f"\nMax Peak Memory Usage: {max_peak_memory:.1f} MB")
         print(f"All results saved to: {OUTPUT_DIR}")
@@ -260,22 +275,22 @@ def main(argv):
         results_file = output_dir_path / 'counting_results.txt'
         
         with open(results_file, 'w') as f:
-            f.write("="*90 + "\n")
+            f.write("="*105 + "\n")
             f.write("PEOPLE COUNTING RESULTS\n")
             f.write(f"Date: {time.strftime('%Y-%m-%d %H:%M:%S')}\n")
             f.write(f"System RAM: {total_ram:.2f} GB\n")
-            f.write("="*90 + "\n\n")
+            f.write("="*105 + "\n\n")
             f.write(f"Total videos processed: {len(results)}\n")
             f.write(f"Total processing time: {overall_time:.2f}s\n")
             f.write(f"Max Peak Memory Usage: {max_peak_memory:.1f} MB\n\n")
             
-            f.write(f"{'Video Name':<40} {'UP':>6} {'DOWN':>6} {'Time(s)':>10} {'FPS':>8} {'PeakRAM':>10}\n")
-            f.write("-"*90 + "\n")
+            f.write(f"{'Video Name':<40} {'UP':>6} {'DOWN':>6} {'Time(s)':>10} {'FPS':>8} {'PeakRAM':>10} {'CPU%':>8}\n")
+            f.write("-" * 105 + "\n")
             
             for r in results:
-                f.write(f"{r['video_name']:<40} {r['up']:>6} {r['down']:>6} {r['time']:>10.2f} {r['fps']:>8.1f} {r['peak_memory']:>9.1f}MB\n")
+                f.write(f"{r['video_name']:<40} {r['up']:>6} {r['down']:>6} {r['time']:>10.2f} {r['fps']:>8.1f} {r['peak_memory']:>9.1f}MB {r['avg_cpu']:>7.1f}%\n")
             
-            f.write("-"*90 + "\n")
+            f.write("-" * 105 + "\n")
             f.write(f"{'TOTAL':<40} {total_up_all:>6} {total_down_all:>6}\n\n")
             
             f.write("\nDetailed Results:\n")
@@ -287,6 +302,7 @@ def main(argv):
                 f.write(f"  - Total frames: {r['frames']}\n")
                 f.write(f"  - Processing time: {r['time']:.2f}s\n")
                 f.write(f"  - Average FPS: {r['fps']:.1f}\n")
+                f.write(f"  - Average CPU Usage: {r['avg_cpu']:.1f}%\n")
                 f.write(f"  - Memory - Initial: {r['initial_memory']:.1f}MB, Peak: {r['peak_memory']:.1f}MB, Used: {r['memory_used']:.1f}MB\n")
                 f.write(f"  - Output file: {r['output']}\n")
         
